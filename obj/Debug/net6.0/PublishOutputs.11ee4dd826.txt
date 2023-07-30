@@ -1,0 +1,11 @@
+/home/rajashekar/Observability dotnet/crudapi2/bin/Debug/net6.0/publish/crudapi2
+/home/rajashekar/Observability dotnet/crudapi2/bin/Debug/net6.0/publish/appsettings.Development.json
+/home/rajashekar/Observability dotnet/crudapi2/bin/Debug/net6.0/publish/appsettings.json
+/home/rajashekar/Observability dotnet/crudapi2/bin/Debug/net6.0/publish/crudapi2.dll
+/home/rajashekar/Observability dotnet/crudapi2/bin/Debug/net6.0/publish/crudapi2.deps.json
+/home/rajashekar/Observability dotnet/crudapi2/bin/Debug/net6.0/publish/crudapi2.runtimeconfig.json
+/home/rajashekar/Observability dotnet/crudapi2/bin/Debug/net6.0/publish/crudapi2.pdb
+/home/rajashekar/Observability dotnet/crudapi2/bin/Debug/net6.0/publish/Microsoft.OpenApi.dll
+/home/rajashekar/Observability dotnet/crudapi2/bin/Debug/net6.0/publish/Swashbuckle.AspNetCore.Swagger.dll
+/home/rajashekar/Observability dotnet/crudapi2/bin/Debug/net6.0/publish/Swashbuckle.AspNetCore.SwaggerGen.dll
+/home/rajashekar/Observability dotnet/crudapi2/bin/Debug/net6.0/publish/Swashbuckle.AspNetCore.SwaggerUI.dll
