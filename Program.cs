@@ -1,40 +1,59 @@
 using Microsoft.OpenApi.Models;
+using NLog.Extensions.Logging;
+// using NLog.Web;
 using Swashbuckle.AspNetCore.Swagger;
 
-var builder = WebApplication.CreateBuilder(args);
-
-// Add services to the container.
-
-builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-// builder.Services.AddSwaggerGen();
-builder.Services.AddSwaggerGen(c =>
+internal class Program
+{
+    private static void Main(string[] args)
     {
-        c.SwaggerDoc("v1", new OpenApiInfo { Title = "CrudApi2", Version = "v1" });
-    });
+        var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddLogging((lb)=>{
-    lb.AddConsole();
-});
+        // Add services to the container.
 
-var app = builder.Build();
+        builder.Services.AddControllers();
+        // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+        builder.Services.AddEndpointsApiExplorer();
+        // builder.Services.AddSwaggerGen();
+        builder.Services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "CrudApi2", Version = "v1" });
+            });
 
-// Configure the HTTP request pipeline.
-// if (app.Environment.IsDevelopment())
-// {
-    app.UseSwagger();
-    // app.UseSwaggerUI();
-    app.UseSwaggerUI(c =>
-    {
-        c.SwaggerEndpoint("/swagger/v1/swagger.json", "CrudApi2");
-    });
-// }
+        builder.Services.AddLogging((lb) =>
+        {
+            // lb.AddConsole();
+            lb.ClearProviders(); // Clear other logging providers
+            lb.SetMinimumLevel(LogLevel.Trace); // Set minimum log level
+            lb.AddNLog("nlog.config"); //configure with nlog.config
+        });
 
-// app.UseHttpsRedirection();
+        // Register the correlation ID generator
+        // builder.Services.AddScoped<CorrelationIdMiddleware>(); //this is wrong as RequestDelegrate is not possible to inject via DI
+        // builder.Host.UseNLog();
 
-app.UseAuthorization();
+        var app = builder.Build();
 
-app.MapControllers();
+        // Configure the HTTP request pipeline.
+        // if (app.Environment.IsDevelopment())
+        // {
+        app.UseSwagger();
+        // app.UseSwaggerUI();
+        app.UseSwaggerUI(c =>
+        {
+            c.SwaggerEndpoint("/swagger/v1/swagger.json", "CrudApi2");
+        });
+        // }
 
-app.Run();
+        // app.UseHttpsRedirection();
+
+        app.UseMiddleware<CorrelationIdMiddleware>(); // Use correlation ID middleware
+
+
+        app.UseAuthorization();
+
+        app.MapControllers();
+
+        app.Run();
+    }
+}

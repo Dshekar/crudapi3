@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/home/rajashekar/Observability dotnet/crudapi2/crudapi2.csproj": {}
+    "/home/rajashekar/Observability dotnet/crudapi3/crudapi2.csproj": {}
   },
   "projects": {
-    "/home/rajashekar/Observability dotnet/crudapi2/crudapi2.csproj": {
+    "/home/rajashekar/Observability dotnet/crudapi3/crudapi2.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/rajashekar/Observability dotnet/crudapi2/crudapi2.csproj",
+        "projectUniqueName": "/home/rajashekar/Observability dotnet/crudapi3/crudapi2.csproj",
         "projectName": "crudapi2",
-        "projectPath": "/home/rajashekar/Observability dotnet/crudapi2/crudapi2.csproj",
+        "projectPath": "/home/rajashekar/Observability dotnet/crudapi3/crudapi2.csproj",
         "packagesPath": "/home/rajashekar/.nuget/packages/",
-        "outputPath": "/home/rajashekar/Observability dotnet/crudapi2/obj/",
+        "outputPath": "/home/rajashekar/Observability dotnet/crudapi3/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/rajashekar/.nuget/NuGet/NuGet.Config"
