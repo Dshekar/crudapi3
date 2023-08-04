@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Http;
+using NLog;
 using System;
 using System.Threading.Tasks;
 
@@ -19,6 +20,9 @@ public class CorrelationIdMiddleware
             // If not, generate a new correlation ID and add it to the response headers
             var correlationId = Guid.NewGuid().ToString();
             context.Response.Headers.Add("Correlation-Id", correlationId);
+            context.Request.Headers.Add("Correlation-Id", correlationId);
+            MappedDiagnosticsLogicalContext.Set("CorrelationID", correlationId);
+            
         }
 
         // Continue the request pipeline

@@ -1,4 +1,9 @@
 FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS base
+
+# Set the default logging driver to json-file with specified options
+ENV DOCKER_LOGGING_DRIVER=json-file
+ENV DOCKER_LOGGING_OPTIONS='{"max-size": "10m", "max-file": "5"}'
+
 WORKDIR /app
 EXPOSE 8080
 

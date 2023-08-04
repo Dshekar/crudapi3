@@ -1,6 +1,6 @@
 using Microsoft.OpenApi.Models;
 using NLog.Extensions.Logging;
-// using NLog.Web;
+using NLog.Web;
 using Swashbuckle.AspNetCore.Swagger;
 
 internal class Program
@@ -24,16 +24,17 @@ internal class Program
         {
             // lb.AddConsole();
             lb.ClearProviders(); // Clear other logging providers
-            lb.SetMinimumLevel(LogLevel.Trace); // Set minimum log level
-            lb.AddNLog("nlog.config"); //configure with nlog.config
+            lb.SetMinimumLevel(LogLevel.Information); // Set minimum log level
+            // lb.AddNLog("nlog.config"); //configure with nlog.config
         });
 
         // Register the correlation ID generator
         // builder.Services.AddScoped<CorrelationIdMiddleware>(); //this is wrong as RequestDelegrate is not possible to inject via DI
-        // builder.Host.UseNLog();
+        builder.Host.UseNLog();
 
         var app = builder.Build();
 
+        app.UseMiddleware<CorrelationIdMiddleware>(); // Use correlation ID middleware
         // Configure the HTTP request pipeline.
         // if (app.Environment.IsDevelopment())
         // {
@@ -47,8 +48,7 @@ internal class Program
 
         // app.UseHttpsRedirection();
 
-        app.UseMiddleware<CorrelationIdMiddleware>(); // Use correlation ID middleware
-
+        
 
         app.UseAuthorization();
 
